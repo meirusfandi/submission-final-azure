@@ -33,6 +33,7 @@
                 $filecontent = fopen($_FILES['file']['tmp_name'], "r");
                 // upload blob
                 $blobs->createBlockBlob($containername, $filename, $filecontent);
+                echo "Upload File Successfully";
             }catch(ServiceException $e){
                 $code = $e->getCode();
                 $error_message = $e->getMessage();
