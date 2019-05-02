@@ -22,21 +22,28 @@
 
         <tbody>
             <?php 
-                do {
-                    $i = 0;
-                    foreach ($result->getBlobs() as $blob){
-                        echo "<tr>";
-                        echo "<td>".++$i."</td>";
-                        echo "<td>".$blob->getName()."</td>";
-                        echo "<td>".$blob->getUrl()."</td>";
-                        echo '<td><img src=""></td>';
-                        echo '<td>
-                            <input type="hidden" name="imageUrl" id="imageUrl" value="'.$blob->getUrl().'">
-                            <button onclick="proccessImage()">Analyze</button>
-                            </td>';
-                        echo "<tr>";
-                    } $listblobs->setContinuationToken($result->getContinuationToken());
-                } while ($result->getContinuationToken());
+                if (sizeof($result->getBlobs()) >0){
+                    do {
+                        $i = 0;
+                        foreach ($result->getBlobs() as $blob){
+                            echo "<tr>";
+                            echo "<td>".++$i."</td>";
+                            echo "<td>".$blob->getName()."</td>";
+                            echo "<td>".$blob->getUrl()."</td>";
+                            echo '<td><img src=""></td>';
+                            echo '<td>
+                                <input type="hidden" name="imageUrl" id="imageUrl" value="'.$blob->getUrl().'">
+                                <button onclick="proccessImage()">Analyze</button>
+                                </td>';
+                            echo "</tr>";
+                        } $listblobs->setContinuationToken($result->getContinuationToken());
+                    } while ($result->getContinuationToken());
+                } else {
+                    echo "<tr>";
+                    echo '<td colspan="5">No Data on Storage</td>';
+                    echo "</tr>";
+                }
+                
             ?>
         </tbody>
     </table>
