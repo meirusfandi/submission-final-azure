@@ -74,12 +74,7 @@
         $containername = "meirusfandi";
         $blobclient = BlobRestProxy::createBlockBlob($connect);
 
-        if ($blobclient->containerExists($containername)){
-            $listblobs = new ListBlobsOptions();
-            $listblobs->setPrefix("");
-
-            $result = $blobclient->listBlobs($containername, $listblobs);
-        } else {
+        if (!$blobclient->containerExists($containername)){
             $createcontainer = new CreateContainerOptions();
             $createcontainer->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
 
@@ -87,12 +82,12 @@
             $createcontainer->addMetaData("key2", "value2");
 
             $blobclient->createContainer($containername, $createcontainer);
-
-            $listblobs = new ListBlobsOptions();
-            $listblobs->setPrefix("");
-
-            $result = $blobclient->listBlobs($containername, $listblobs);
         }
+
+        $listblobs = new ListBlobsOptions();
+        $listblobs->setPrefix("");
+
+        $result = $blobclient->listBlobs($containername, $listblobs);
     ?>
 
     <script type="text/javascript"> 
