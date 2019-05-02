@@ -21,13 +21,23 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>Analyze</td>
-            </tr>
+            <?php 
+                do {
+                    $i = 0;
+                    foreach ($result->getBlobs() as $blob){
+                        echo "<tr>";
+                        echo "<td>".++$i."</td>";
+                        echo "<td>".$blob->getName()."</td>";
+                        echo "<td>".$blob->getUrl()."</td>";
+                        echo '<td><img src=""></td>';
+                        echo '<td>
+                            <input type="hidden" name="imageUrl" id="imageUrl" value="'.$blob->getUrl().'">
+                            <button onclick="proccessImage()">Analyze</button>
+                            </td>';
+                        echo "<tr>";
+                    } $listblobs->setContinuationToken($result->getContinuationToken());
+                } while ($result->getContinuationToken());
+            ?>
         </tbody>
     </table>
 
@@ -50,6 +60,40 @@
             </div>
         </div>
     </div>
+
+    <?php 
+        require_once 'vendor/autoload.php';
+        
+        use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+        use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
+        use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
+        use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
+        use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
+
+        $connect = "DefaultEndpointsProtocol=https;AccountName=meirusfandiwev;AccountKey=vwhIwbU1kaFKEZMFWTd5ng21ux0PA8P8XRgUgo6atp8xbKPYFStk5vz+7/lTIG8SyZ/37LGfYqQxqbsX/EIwCQ==;EndpointSuffix=core.windows.net";
+        $containername = "meirusfandi";
+        $blobclient = BlobRestProxy::createBlockBlob($connect);
+
+        if ($blobclient->containerExists($containername)){
+            $listblobs = new ListBlobsOptions();
+            $listblobs->setPrefix("");
+
+            $result = $blobclient->listBlobs($containername, $listblobs);
+        } else {
+            $createcontainer = new CreateContainerOptions();
+            $createcontainer->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
+
+            $createcontainer->addMetaData("key1", "value1");
+            $createcontainer->addMetaData("key2", "value2");
+
+            $blobclient->createContainer($containername, $createcontainer);
+
+            $listblobs = new ListBlobsOptions();
+            $listblobs->setPrefix("");
+
+            $result = $blobclient->listBlobs($containername, $listblobs);
+        }
+    ?>
 
     <script type="text/javascript"> 
         function processImage(){
