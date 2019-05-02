@@ -29,8 +29,8 @@
 
         if (isset($_POST['upload'])){
             try {
-                $filename = strtolower($_FILES['file']['name']);
-                $filecontent = fopen($_FILES['file']['tmp_name'], "r");
+                $filename = strtolower($_FILES['image']['name']);
+                $filecontent = fopen($_FILES['image']['tmp_name'], "r");
                 // upload blob
                 $blobs->createBlockBlob($containername, $filename, $filecontent);
                 echo "Upload File Successfully";
