@@ -1,27 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Final Submission | Azure Developer Academy</title>
-    <script src="jquery.min.js"></script>
-</head>
-<body>
-    <h2>Image List From Blob Storage</h2>
-    <a href="upload.php"><button>Add Image</button></a>
-    <hr>
-    <table>
-        <thead>
-            <th>No. </th>
-            <th>File Name</th>
-            <th>File Url</th>
-            <th>Preview</th>
-            <th>Action</th>
-        </thead>
+<?php
+echo "<!DOCTYPE html>";
+echo '<html lang="en">';
+echo "<head>";
+echo '<meta charset="UTF-8">';
+echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+echo '<meta http-equiv="X-UA-Compatible" content="ie=edge">';
+echo "<title>Final Submission | Azure Developer Academy</title>";
+echo '<script src="jquery.min.js"></script>';
+echo "</head>";
+echo "<body>";
+echo "<h2>Image List From Blob Storage</h2>";
+echo '<a href="upload.php"><button>Add Image</button></a>';
+echo "<hr>";
+echo "<table>";
+echo "<thead>";
+echo "<th>No. </th>";
+echo "<th>File Name</th>";
+echo "<th>File Url</th>";
+echo "<th>Preview</th>";
+echo "<th>Action</th>";
+echo "</thead>";
 
-        <tbody>
-            <?php 
+echo "<tbody>";
+            
                 if (sizeof($result->getBlobs()) >0){
                     do {
                         $i = 0;
@@ -43,32 +44,31 @@
                     echo '<td colspan="5">No Data on Storage</td>';
                     echo "</tr>";
                 }
-                
-            ?>
-        </tbody>
-    </table>
+                    
+        echo "</tbody>";
+    echo "</table>";
 
-    <hr>
+    echo "<hr>";
 
-    <!-- Form Show response from Computer Vision -->
-    <h2>Show Respon From Analyze | Computer Vision</h2>
-    <div class="col-md-12">
-        <div id="wrapper" style="width:1020px; display:table;">
-            <div id="jsonOutput" style="width:600px; display:table-cell;">
-                Response:
-                <br><br>
-                <textarea id="responseTextArea" class="UIInput"
-                style="width:580px; height:400px;"></textarea>
-            </div>
-            <div id="imageDiv" style="width:420px; display:table-cell;">
-                Source image:
-                <br><br>
-                <img id="sourceImage" width="400" />
-            </div>
-        </div>
-    </div>
+    //<!-- Form Show response from Computer Vision -->
+    echo "<h2>Show Respon From Analyze | Computer Vision</h2>";
+    echo '<div class="col-md-12">';
+    echo '<div id="wrapper" style="width:1020px; display:table;">';
+    echo '<div id="jsonOutput" style="width:600px; display:table-cell;">';
+    echo "      Response:";
+    echo "      <br><br>";
+    echo '      <textarea id="responseTextArea" class="UIInput"';
+    echo '      style="width:580px; height:400px;"></textarea>';
+    echo "  </div>";
+    echo '  <div id="imageDiv" style="width:420px; display:table-cell;">';
+    echo "      Source image:";
+    echo "      <br><br>";
+    echo '      <img id="sourceImage" width="400" />';
+    echo "  </div>";
+    echo "</div>";
+    echo "</div>";
 
-    <?php 
+    
         require_once 'vendor/autoload.php';
         
         use MicrosoftAzure\Storage\Blob\BlobRestProxy;
@@ -95,8 +95,8 @@
         $listblobs->setPrefix("");
 
         $result = $blobclient->listBlobs($containername, $listblobs);
-    ?>
-
+    
+    echo '
     <script type="text/javascript"> 
         function processImage(){
             var subscriptionKey = "2e2671970d6b469399ac05285a925f3e";
@@ -124,7 +124,7 @@
                 type: "POST",
     
                 // Request body.
-                data: '{"url": ' + '"' + sourceImageUrl + '"}',
+                data: {"url": + " + sourceImageUrl + "},
             })
     
             .done(function(data) {
@@ -141,6 +141,8 @@
                 alert(errorString);
             });
         };
-    </script>
-</body>
-</html>
+    </script>';
+echo "</body>";
+echo "</html>";
+
+?>
