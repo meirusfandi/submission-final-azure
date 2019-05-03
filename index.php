@@ -34,16 +34,25 @@ echo "<tbody>";
     $containername = "meirusfandi";
     $blobclient = BlobRestProxy::createBlobService($connect);
 
-    if (!$blobclient->containerExists($containername)){
-        $createcontainer = new CreateContainerOptions();
-        $createcontainer->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
+    try {
+        if (!$blobclient->containerExists($containername)){
+            $createcontainer = new CreateContainerOptions();
+            $createcontainer->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
 
-        $createcontainer->addMetaData("key1", "value1");
-        $createcontainer->addMetaData("key2", "value2");
+            $createcontainer->addMetaData("key1", "value1");
+            $createcontainer->addMetaData("key2", "value2");
 
-        $blobclient->createContainer($containername, $createcontainer);
+            $blobclient->createContainer($containername, $createcontainer);
+        }
+    } catch(ServiceException $e){
+        $code = $e->getCode();
+        $error_message = $e->getMessage();
+        echo $code.": ".$error_message."<br />";
+    }catch(InvalidArgumentTypeException $e){
+        $code = $e->getCode();
+        $error_message = $e->getMessage();
+        echo $code.": ".$error_message."<br />";
     }
-
     $listblobs = new ListBlobsOptions();
     $listblobs->setPrefix("");
 
