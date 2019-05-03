@@ -22,7 +22,33 @@ echo "<th>Action</th>";
 echo "</thead>";
 
 echo "<tbody>";
+    require_once 'vendor/autoload.php';
             
+    use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+    use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
+    use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
+    use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
+    use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
+
+    $connect = "DefaultEndpointsProtocol=https;AccountName=meirusfandiwev;AccountKey=vwhIwbU1kaFKEZMFWTd5ng21ux0PA8P8XRgUgo6atp8xbKPYFStk5vz+7/lTIG8SyZ/37LGfYqQxqbsX/EIwCQ==;EndpointSuffix=core.windows.net";
+    $containername = "meirusfandi";
+    $blobclient = BlobRestProxy::createBlockBlob($connect);
+
+    if (!$blobclient->containerExists($containername)){
+        $createcontainer = new CreateContainerOptions();
+        $createcontainer->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
+
+        $createcontainer->addMetaData("key1", "value1");
+        $createcontainer->addMetaData("key2", "value2");
+
+        $blobclient->createContainer($containername, $createcontainer);
+    }
+
+    $listblobs = new ListBlobsOptions();
+    $listblobs->setPrefix("");
+
+    $result = $blobclient->listBlobs($containername, $listblobs);
+    
                 if (sizeof($result->getBlobs()) >0){
                     do {
                         $i = 0;
@@ -67,34 +93,6 @@ echo "<tbody>";
     echo "  </div>";
     echo "</div>";
     echo "</div>";
-
-    
-        require_once 'vendor/autoload.php';
-        
-        use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-        use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-        use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
-        use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
-        use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
-
-        $connect = "DefaultEndpointsProtocol=https;AccountName=meirusfandiwev;AccountKey=vwhIwbU1kaFKEZMFWTd5ng21ux0PA8P8XRgUgo6atp8xbKPYFStk5vz+7/lTIG8SyZ/37LGfYqQxqbsX/EIwCQ==;EndpointSuffix=core.windows.net";
-        $containername = "meirusfandi";
-        $blobclient = BlobRestProxy::createBlockBlob($connect);
-
-        if (!$blobclient->containerExists($containername)){
-            $createcontainer = new CreateContainerOptions();
-            $createcontainer->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
-
-            $createcontainer->addMetaData("key1", "value1");
-            $createcontainer->addMetaData("key2", "value2");
-
-            $blobclient->createContainer($containername, $createcontainer);
-        }
-
-        $listblobs = new ListBlobsOptions();
-        $listblobs->setPrefix("");
-
-        $result = $blobclient->listBlobs($containername, $listblobs);
     
     echo '
     <script type="text/javascript"> 
