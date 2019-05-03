@@ -25,7 +25,7 @@
 
         $connect = "DefaultEndpointsProtocol=https;AccountName=meirusfandiwev;AccountKey=vwhIwbU1kaFKEZMFWTd5ng21ux0PA8P8XRgUgo6atp8xbKPYFStk5vz+7/lTIG8SyZ/37LGfYqQxqbsX/EIwCQ==;EndpointSuffix=core.windows.net";
         $containername = "meirusfandi";
-        $blobclient = BlobRestProxy::createBlockBlob($connect);
+        $blobclient = BlobRestProxy::createBlobService($connect);
 
         if (isset($_POST['upload'])){
             try {
