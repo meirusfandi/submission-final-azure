@@ -32,7 +32,7 @@ echo "<tbody>";
 
     $connect = "DefaultEndpointsProtocol=https;AccountName=meirusfandiwev;AccountKey=vwhIwbU1kaFKEZMFWTd5ng21ux0PA8P8XRgUgo6atp8xbKPYFStk5vz+7/lTIG8SyZ/37LGfYqQxqbsX/EIwCQ==;EndpointSuffix=core.windows.net";
     $containername = "meirusfandi";
-    $blobclient = BlobRestProxy::createBlockBlob($connect);
+    $blobclient = BlobRestProxy::createBlobService($connect);
 
     if (!$blobclient->containerExists($containername)){
         $createcontainer = new CreateContainerOptions();
@@ -48,7 +48,7 @@ echo "<tbody>";
     $listblobs->setPrefix("");
 
     $result = $blobclient->listBlobs($containername, $listblobs);
-    
+
                 if (sizeof($result->getBlobs()) >0){
                     do {
                         $i = 0;
