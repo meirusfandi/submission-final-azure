@@ -11,7 +11,7 @@
     <script type="text/javascript">
         function processImage() {
             
-            var subscriptionKey = "<subscriptionKey>";
+            var subscriptionKey = "2e2671970d6b469399ac05285a925f3e";
     
             var uriBase = "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
     
@@ -71,7 +71,7 @@
     <!-- PHP Section -->
     <?php 
         require_once 'vendor/autoload.php';
-        require_once './random_string.php';
+        // require_once './random_string.php';
         
         use MicrosoftAzure\Storage\Blob\BlobRestProxy;
         use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
@@ -96,9 +96,9 @@
         $containerName = "meirusfandi";
         
         // $blobClient->createContainer($containerName, $createContainerOptions);
-        // echo "sampe sini";
+        
         if (isset($_POST['upload'])){
-            // echo "dia kesini";
+            
             try {
                 // Getting local file so that we can upload it to Azure
                 $filename = strtolower($_FILES['file']['name']);
@@ -122,7 +122,6 @@
                 echo $code.": ".$error_message."<br />";
             }
         } else if (isset($_POST['load'])){
-            echo "atau kesini";
 
             // List blobs.
             $listBlobsOptions = new ListBlobsOptions();
@@ -130,7 +129,7 @@
 
             echo "<hr>";
             echo "<h2>Files on Blob Storage : </h2>";
-            echo "<table>";
+            echo '<table border="1">';
             echo "<thead>";
             echo "<th>No. </th>";
             echo "<th>File Name</th>";
