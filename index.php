@@ -30,7 +30,6 @@
                 if (sourceImageUrl == ""){
                     document.querySelector("#sourceImage").src = sourceImageUrl;
                     console.log("debug" + sourceImageUrl);   
-                    break;
                 }
             }
     
