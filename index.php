@@ -46,28 +46,31 @@
         // $blobClient->createContainer($containerName, $createContainerOptions);
         
         if (isset($_POST['upload'])){
-            
-            try {
-                // Getting local file so that we can upload it to Azure
-                $filename = strtolower($_FILES['file']['name']);
-                $filecontent = fopen($_FILES['file']['tmp_name'], "r");
-                
-                # Upload file as a block blob
-                echo "Uploading File: ".PHP_EOL;
-                echo $filename;
-                echo " was Successfully<br />";
+            if ($_FILES['file']['name'] != ""){
+                try {
+                    // Getting local file so that we can upload it to Azure
+                    $filename = strtolower($_FILES['file']['name']);
+                    $filecontent = fopen($_FILES['file']['tmp_name'], "r");
 
-                //Upload blob
-                $blobClient->createBlockBlob($containerName, $filename, $filecontent);
+                    # Upload file as a block blob
+                    echo "Uploading File: ".PHP_EOL;
+                    echo $filename;
+                    echo " was Successfully<br />";
 
-            } catch(ServiceException $e){
-                $code = $e->getCode();
-                $error_message = $e->getMessage();
-                echo $code.": ".$error_message."<br />";
-            } catch(InvalidArgumentTypeException $e){
-                $code = $e->getCode();
-                $error_message = $e->getMessage();
-                echo $code.": ".$error_message."<br />";
+                    //Upload blob
+                    $blobClient->createBlockBlob($containerName, $filename, $filecontent);
+
+                } catch(ServiceException $e){
+                    $code = $e->getCode();
+                    $error_message = $e->getMessage();
+                    echo $code.": ".$error_message."<br />";
+                } catch(InvalidArgumentTypeException $e){
+                    $code = $e->getCode();
+                    $error_message = $e->getMessage();
+                    echo $code.": ".$error_message."<br />";
+                }
+            } else {
+                echo "No. data uploaded";
             }
         } else if (isset($_POST['load'])){
 
