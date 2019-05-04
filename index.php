@@ -72,7 +72,7 @@
     <?php 
         echo "on php section 1";
         require_once 'vendor/autoload.php';
-        require_once './random_string';
+        require_once './random_string.php';
         echo "on php section 2";
         use MicrosoftAzure\Storage\Blob\BlobRestProxy;
         use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
