@@ -147,10 +147,8 @@
                     echo "<tr>";
                     echo "<td>".++$i."</td>";
                     echo "<td>".$blobFile->getName()."</td>";
-                    echo '<td>';
-                        echo '<div id="url" style="width:120px;">';
-                        echo '<p width="200">'.$blobFile->getUrl().'</p>';
-                        echo "</div>";
+                    echo '<td width="200px">';
+                    echo $blobFile->getUrl();
                     echo '</td>';
                     echo '<td>';
                     echo '<div id="imageDiv" style="width:220px;">';
