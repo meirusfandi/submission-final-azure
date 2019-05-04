@@ -96,7 +96,7 @@
         $createContainerOptions->addMetaData("key2", "value2");
         echo "on php section 8";
             
-        $containerName = "meirusfandi".$generateRandomString();
+        $containerName = "meirusfandi".generateRandomString();
         echo "on php section 9";
 
         // // See if the container already exists.
