@@ -96,8 +96,9 @@
         $containerName = "meirusfandi";
         
         $blobClient->createContainer($containerName, $createContainerOptions);
-
+        echo "sampe sini";
         if (isset($_POST['upload'])){
+            echo "dia kesini";
             try {
                 // Getting local file so that we can upload it to Azure
                 $filename = strtolower($_FILES['file']['name']);
@@ -121,6 +122,7 @@
                 echo $code.": ".$error_message."<br />";
             }
         } else if (isset($_POST['load'])){
+            echo "atau kesini";
 
             // List blobs.
             $listBlobsOptions = new ListBlobsOptions();
