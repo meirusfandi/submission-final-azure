@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Azure Cloud Developer Academy</title>
-    <script src="jquery.min.js"></script>
 </head>
 <body>
     <h2>Upload New Image Source</h2>
