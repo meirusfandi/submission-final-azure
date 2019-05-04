@@ -14,7 +14,8 @@
 <body>
  
 <script type="text/javascript">
-    function processImage() {
+    //function processImage() {
+    $(document).ready(function){
         var subscriptionKey = "2e2671970d6b469399ac05285a925f3e";
  
         var uriBase = "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
@@ -27,8 +28,8 @@
         };
  
         // Display the image.
-        // var sourceImageUrl = <?php echo $url; ?>;
-        var sourceImageUrl = document.getElementById("inputImage").value;
+        var sourceImageUrl = <?php echo $url; ?>;
+        // var sourceImageUrl = document.getElementById("inputImage").value;
         document.querySelector("#sourceImage").src = sourceImageUrl;
  
         // Make the REST API call.
@@ -67,10 +68,7 @@
 <h1>Analyze image:</h1>
 Enter the URL to an image, then click the <strong>Analyze image</strong> button.
 <br><br>
-Image to analyze:
-<input type="text" name="inputImage" id="inputImage" value="<?php echo $url; ?>" />
-<button onclick="processImage()">Analyze image</button>
-<br><br>
+
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">
         Response:
