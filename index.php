@@ -93,7 +93,7 @@
         $createContainerOptions->addMetaData("key1", "value1");
         $createContainerOptions->addMetaData("key2", "value2");
             
-        $containerName = "meirusfandi".generateRandomString();
+        $containerName = "meirusfandi";
         
         $blobClient->createContainer($containerName, $createContainerOptions);
 
