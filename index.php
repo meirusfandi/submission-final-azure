@@ -27,7 +27,7 @@
             var jumlah = document.getElementById("count").value;
             for (i=1; i<=jumlah; i++){
                 var sourceImageUrl = document.getElementById("inputImage"+i).value;
-                if (sourceImageUrl == ""){
+                if (sourceImageUrl != ""){
                     document.querySelector("#sourceImage").src = sourceImageUrl;
                     console.log("debug" + sourceImageUrl);   
                 }
