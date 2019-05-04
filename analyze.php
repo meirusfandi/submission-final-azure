@@ -13,7 +13,7 @@
 ?>
  
 <script type="text/javascript">
-    $(document).ready(function () {
+    function proccessImage() {
         var subscriptionKey = "2e2671970d6b469399ac05285a925f3e";
  
         var uriBase = "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
@@ -62,7 +62,12 @@
     };
 </script>
  
-<h1>Analyze image : </h1>
+<h1>Analyze image:</h1>
+Enter the URL to an image, then click the <strong>Analyze image</strong> button.
+<br><br>
+Image to analyze:
+<input type="text" name="inputImage" id="inputImage" value="<?php echo $url; ?>" />
+<button onclick="processImage()">Analyze image</button>
 <br><br>
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">
