@@ -13,7 +13,7 @@
 ?>
  
 <script type="text/javascript">
-    function processImage() {
+    // function processImage() {
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
@@ -73,7 +73,7 @@
                 jQuery.parseJSON(jqXHR.responseText).message;
             alert(errorString);
         });
-    };
+    // };
 </script>
  
 <h1>Analyze image:</h1>
