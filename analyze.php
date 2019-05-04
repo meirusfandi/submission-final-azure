@@ -62,13 +62,8 @@
     };
 </script>
  
-<h1>Analyze image:</h1>
-Enter the URL to an image, then click the <strong>Analyze image</strong> button.
+<h1>Analyze image : </h1>
 <br><br>
-<!-- Image to analyze: -->
-<!-- <input type="text" name="inputImage" id="inputImage" value="" /> -->
-<!-- <button onclick="processImage()">Analyze image</button>
-<br><br> -->
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">
         Response:
@@ -82,5 +77,7 @@ Enter the URL to an image, then click the <strong>Analyze image</strong> button.
         <img id="sourceImage" width="400" />
     </div>
 </div>
+
+<a href="index.php"><button>Back</button></a>
 </body>
 </html>
