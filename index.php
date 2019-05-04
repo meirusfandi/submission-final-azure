@@ -95,10 +95,10 @@
             
         $containerName = "meirusfandi";
         
-        $blobClient->createContainer($containerName, $createContainerOptions);
-        echo "sampe sini";
+        // $blobClient->createContainer($containerName, $createContainerOptions);
+        // echo "sampe sini";
         if (isset($_POST['upload'])){
-            echo "dia kesini";
+            // echo "dia kesini";
             try {
                 // Getting local file so that we can upload it to Azure
                 $filename = strtolower($_FILES['file']['name']);
