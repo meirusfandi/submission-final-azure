@@ -157,7 +157,7 @@
                     echo "</div>";
                     echo '</td>';
                     echo "<td>";
-                    echo '<input type="hidden" name="inputImage" id="inputImage" value="'.$url.'">';
+                    echo '<input type="text" name="inputImage" id="inputImage" value="'.$url.'">';
                     echo '<button onclick="processImage()">Analyze</button>';
                     echo "</td>";
                     echo "</tr>";
