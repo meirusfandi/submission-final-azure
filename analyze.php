@@ -1,12 +1,3 @@
-<?php 
-    if (isset($_POST['analyze'])){
-        $url = $_POST['url'];
-        echo "link URL : ".$url;
-    } else {
-        header("Location", "index.php");
-    }
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,5 +79,14 @@ Image to analyze:
 </div>
 
 <a href="index.php"><button>Back</button></a>
+
+<?php 
+    if (isset($_POST['analyze'])){
+        $url = $_POST['url'];
+        echo "link URL : ".$url;
+    } else {
+        header("Location", "index.php");
+    }
+?>
 </body>
 </html>
