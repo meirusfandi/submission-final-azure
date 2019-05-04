@@ -72,6 +72,7 @@
     <?php 
         echo "on php section 1";
         require_once 'vendor/autoload.php';
+        require_once 'random_string';
         echo "on php section 2";
         use MicrosoftAzure\Storage\Blob\BlobRestProxy;
         use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
@@ -94,15 +95,8 @@
         $createContainerOptions->addMetaData("key1", "value1");
         $createContainerOptions->addMetaData("key2", "value2");
         echo "on php section 8";
-
-        $characters = 'abcdefghijklmnopqrstuvwxyz';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
             
-        $containerName = "meirusfandi".$RandomString();
+        $containerName = "meirusfandi".$generateRandomString();
         echo "on php section 9";
 
         // // See if the container already exists.
