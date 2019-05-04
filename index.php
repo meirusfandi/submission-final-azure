@@ -148,12 +148,12 @@
                     echo "<td>".++$i."</td>";
                     echo "<td>".$blobFile->getName()."</td>";
                     echo '<td>';
-                        echo '<div id="url" style="width:120px; display:table-cell;">';
-                        echo $blobFile->getUrl();
+                        echo '<div id="url" style="width:120px;">';
+                        echo '<p width="200">'.$blobFile->getUrl().'</p>';
                         echo "</div>";
                     echo '</td>';
                     echo '<td>';
-                    echo '<div id="imageDiv" style="width:220px; display:table-cell;">';
+                    echo '<div id="imageDiv" style="width:220px;">';
                         echo '<img src="'.$blobFile->getUrl().'" width="200" />';
                     echo "</div>";
                     echo '</td>';
