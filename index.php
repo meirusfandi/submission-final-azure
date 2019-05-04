@@ -99,23 +99,30 @@
 
         // See if the container already exists.
         $listContainersOptions = new ListContainersOptions;
+        echo "on php section 10";
         $listContainersOptions->setPrefix($containerName);
+        echo "on php section 11";
         $listContainersResult = $blobRestProxy->listContainers($listContainersOptions);
+        echo "on php section 12";
         $containerExists = false;
-        
+        echo "on php section 13";
+
         foreach ($listContainersResult->getContainers() as $container) {
+            echo "on php section 14";
             if ($container->getName() == CONTAINERNAME) {
+                echo "on php section 15";
                 // The container exists.
                 $containerExists = true;
                 // No need to keep checking.
                 break;
             }
         }
-
+        echo "on php section 16";
         if (!$containerExists){
             // Create container.
-            echo "on php section 10";
+            echo "on php section 17";
             $blobClient->createContainer($containerName, $createContainerOptions);
+            echo "on php section 18";
         }
 
         echo "on php section";
