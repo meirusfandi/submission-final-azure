@@ -1,6 +1,7 @@
 <?php 
     if (isset($_POST['analyze'])){
         $url = $_POST['url'];
+        echo $url;
     } else {
         header("Location", "index.php");
     }
