@@ -16,7 +16,7 @@
 <body>
  
 <script type="text/javascript">
-    function proccessImage() {
+    function processImage() {
         var subscriptionKey = "2e2671970d6b469399ac05285a925f3e";
  
         var uriBase = "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
