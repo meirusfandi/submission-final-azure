@@ -147,8 +147,16 @@
                     echo "<tr>";
                     echo "<td>".++$i."</td>";
                     echo "<td>".$blobFile->getName()."</td>";
-                    echo '<td style="width:420px;">'.$blobFile->getUrl().'</td>';
-                    echo '<td style="width:420px;"><img src="'.$blobFile->getUrl().'" alt=""></td>';
+                    echo '<td>';
+                        echo '<div id="url" style="width:120px; display:table-cell;">';
+                        $blobFile->getUrl();
+                        echo "</div>";
+                    echo '</td>';
+                    echo '<td>';
+                    echo '<div id="imageDiv" style="width:220px; display:table-cell;">';
+                        echo '<img src="'.$blobFile->getUrl().'" width="200" />';
+                    echo "</div>";
+                    echo '</td>';
                     echo "<td>";
                     echo '<input type="hidden" name="inputImage" id="inputImage" value="'.$blobFile->getUrl().'">';
                     echo '<button onclick="processImage()">Analyze</button>';
