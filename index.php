@@ -105,7 +105,7 @@
                             echo "</div>";
                         echo '</td>';
                         echo "<td>";
-                            echo '<form action="analyze.php?url='.$url.'" method="post">';
+                            echo '<form action="analyze.php" method="post">';
                                 echo '<input type="hidden" name="url" value="'.$url.'">';
                                 echo '<input type="submit" name="analyze" value="Analyze">';
                             echo "</form>";
