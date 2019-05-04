@@ -147,7 +147,7 @@
                     echo "<tr>";
                     echo "<td>".++$i."</td>";
                     echo "<td>".$blobFile->getName()."</td>";
-                    echo "<td>".$blobFile->getUrl()."</td>";
+                    echo '<td width="100">'.$blobFile->getUrl().'</td>';
                     echo '<td width="200" height="200"><img src="'.$blobFile->getUrl().'" alt=""></td>';
                     echo "<td>";
                     echo '<input type="hidden" name="inputImage" id="inputImage" value="'.$blobFile->getUrl().'">';
