@@ -25,6 +25,7 @@
             // Display the image.
             var sourceImageUrl = document.getElementById("inputImage").value;
             document.querySelector("#sourceImage").src = sourceImageUrl;
+            console.log("debug" + sourceImageUrl);
     
             // Make the REST API call.
             $.ajax({
