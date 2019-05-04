@@ -78,6 +78,7 @@
         use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
         use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
         use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
+        use WindowsAzure\Blob\Models\ListContainersOptions;
         echo "on php section 3";
         $connectionString = "DefaultEndpointsProtocol=https;AccountName=meirusfandiwev;AccountKey=vwhIwbU1kaFKEZMFWTd5ng21ux0PA8P8XRgUgo6atp8xbKPYFStk5vz+7/lTIG8SyZ/37LGfYqQxqbsX/EIwCQ==;EndpointSuffix=core.windows.net";
         echo "on php section 4";
@@ -95,7 +96,23 @@
         echo "on php section 8";
         $containerName = "meirusfandi";
         echo "on php section 9";
-        if (!$blobClient->containerExists($containerName)){
+
+        // See if the container already exists.
+        $listContainersOptions = new ListContainersOptions;
+        $listContainersOptions->setPrefix($containerName);
+        $listContainersResult = $blobRestProxy->listContainers($listContainersOptions);
+        $containerExists = false;
+        
+        foreach ($listContainersResult->getContainers() as $container) {
+            if ($container->getName() == CONTAINERNAME) {
+                // The container exists.
+                $containerExists = true;
+                // No need to keep checking.
+                break;
+            }
+        }
+
+        if (!$containerExists){
             // Create container.
             echo "on php section 10";
             $blobClient->createContainer($containerName, $createContainerOptions);
