@@ -8,64 +8,6 @@
     <script src="jquery.min.js"></script>
 </head>
 <body>
-    <script type="text/javascript">
-        function processImage() {
-            
-            var subscriptionKey = "2e2671970d6b469399ac05285a925f3e";
-    
-            var uriBase = "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
-    
-            // Request parameters.
-            var params = {
-                "visualFeatures": "Categories,Description,Color",
-                "details": "",
-                "language": "en",
-            };
-    
-            // Display the image.
-            var i;
-            var jumlah = document.getElementById("count").value;
-            for (i=1; i<=jumlah; i++){
-                var sourceImageUrl = document.getElementById("inputImage"+i).value;
-                if (sourceImageUrl != ""){
-                    document.querySelector("#sourceImage").src = sourceImageUrl;
-                    console.log("debug" + sourceImageUrl);   
-                }
-            }
-    
-            // Make the REST API call.
-            $.ajax({
-                url: uriBase + "?" + $.param(params),
-    
-                // Request headers.
-                beforeSend: function(xhrObj){
-                    xhrObj.setRequestHeader("Content-Type","application/json");
-                    xhrObj.setRequestHeader(
-                        "Ocp-Apim-Subscription-Key", subscriptionKey);
-                },
-    
-                type: "POST",
-    
-                // Request body.
-                data: '{"url": ' + '"' + sourceImageUrl + '"}',
-            })
-    
-            .done(function(data) {
-                // Show formatted JSON on webpage.
-                $("#responseTextArea").val(JSON.stringify(data, null, 2));
-            })
-    
-            .fail(function(jqXHR, textStatus, errorThrown) {
-                // Display error message.
-                var errorString = (errorThrown === "") ? "Error. " :
-                    errorThrown + " (" + jqXHR.status + "): ";
-                errorString += (jqXHR.responseText === "") ? "" :
-                    jQuery.parseJSON(jqXHR.responseText).message;
-                alert(errorString);
-            });
-        };
-    </script>
-
     <h2>Upload New Image Source</h2>
     <hr>
     <form action="index.php" method="post" enctype="multipart/form-data">
@@ -152,44 +94,29 @@
                 
                 foreach ($result->getBlobs() as $blobFile) {
                     echo "<tr>";
-                    echo "<td>".++$i."</td>";
-                    echo "<td>".$blobFile->getName()."</td>";
-                    echo '<td width="200px">';
-                    echo $blobFile->getUrl();
-                    echo '</td>';
-                    $url = $blobFile->getUrl();
-                    echo '<td>';
-                    echo '<div id="image" style="width:220px;">';
-                        echo '<img src="'.$url.'" width="200" />';
-                    echo "</div>";
-                    echo '</td>';
-                    echo "<td>";
-                    echo '<input type="hidden" name="count" id="count" value="'.sizeof($result->getBlobs()).'">';
-                    echo '<input type="hidden" name="inputImage'.$i.'" id="inputImage'.$i.'" value="'.$url.'">';
-                    echo '<button onclick="processImage()">Analyze</button>';
-                    echo "</td>";
+                        echo "<td>".++$i."</td>";
+                        echo "<td>".$blobFile->getName()."</td>";
+                        echo '<td width="200px">';
+                            echo $blobFile->getUrl();
+                        echo '</td>';
+                        $url = $blobFile->getUrl();
+                        echo '<td>';
+                            echo '<div id="image" style="width:220px;">';
+                                echo '<img src="'.$url.'" width="200" />';
+                            echo "</div>";
+                        echo '</td>';
+                        echo "<td>";
+                            echo '<form action="analyze.php" method="POST">';
+                                echo '<input type="hidden" name="url" id="url" value="'.$url.'">';
+                                echo '<input type="submit" value="Analyze">';
+                            echo "</form>";
+                        echo "</td>";
                     echo "</tr>";
                 }
                 $listBlobsOptions->setContinuationToken($result->getContinuationToken());
             } while($result->getContinuationToken());
             echo "</tbody>";
             echo "</table>";
-            
-            echo "<hr>";
-            echo "<br><br>";
-            echo "<h2>Analyzing Image Using Computer Vision</h2>";
-            echo '<div id="wrapper" style="width:1020px; display:table;">';
-                echo '<div id="jsonOutput" style="width:600px; display:table-cell;">';
-                    echo "Response:";
-                    echo "<br><br>";
-                    echo '<textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>';
-                echo "</div>";
-                echo '<div id="imageDiv" style="width:420px; display:table-cell;">';
-                    echo "Source image:";
-                    echo "<br><br>";
-                    echo '<img id="sourceImage" width="400" />';
-                echo "</div>";
-            echo "</div>";
         }
     ?>
     
