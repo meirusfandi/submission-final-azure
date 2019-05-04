@@ -150,13 +150,14 @@
                     echo '<td width="200px">';
                     echo $blobFile->getUrl();
                     echo '</td>';
+                    $url = $blobFile->getUrl();
                     echo '<td>';
                     echo '<div id="imageDiv" style="width:220px;">';
-                        echo '<img src="'.$blobFile->getUrl().'" width="200" />';
+                        echo '<img src="'.$url.'" width="200" />';
                     echo "</div>";
                     echo '</td>';
                     echo "<td>";
-                    echo '<input type="hidden" name="inputImage" id="inputImage" value="'.$blobFile->getUrl().'">';
+                    echo '<input type="hidden" name="inputImage" id="inputImage" value="'.$url.'">';
                     echo '<button onclick="processImage()">Analyze</button>';
                     echo "</td>";
                     echo "</tr>";
