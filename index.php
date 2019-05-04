@@ -149,7 +149,7 @@
                     echo "<td>".$blobFile->getName()."</td>";
                     echo '<td>';
                         echo '<div id="url" style="width:120px; display:table-cell;">';
-                        $blobFile->getUrl();
+                        echo $blobFile->getUrl();
                         echo "</div>";
                     echo '</td>';
                     echo '<td>';
