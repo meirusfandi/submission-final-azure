@@ -23,9 +23,16 @@
             };
     
             // Display the image.
-            var sourceImageUrl = document.getElementById("inputImage").value;
-            document.querySelector("#sourceImage").src = sourceImageUrl;
-            console.log("debug" + sourceImageUrl);
+            var i;
+            var jumlah = document.getElementById("count").value;
+            for (i=1; i<=jumlah; i++){
+                var sourceImageUrl = document.getElementById("inputImage"+i).value;
+                if (sourceImageUrl == ""){
+                    document.querySelector("#sourceImage").src = sourceImageUrl;
+                    console.log("debug" + sourceImageUrl);   
+                    break;
+                }
+            }
     
             // Make the REST API call.
             $.ajax({
@@ -158,7 +165,8 @@
                     echo "</div>";
                     echo '</td>';
                     echo "<td>";
-                    echo '<input type="hidden" name="inputImage" id="inputImage" value="'.$url.'">';
+                    echo '<input type="hidden" name="count" id="count" value="'.sizeof($result->getBlobs()).'">';
+                    echo '<input type="hidden" name="inputImage'.$i.'" id="inputImage'.$i.'" value="'.$url.'">';
                     echo '<button onclick="processImage()">Analyze</button>';
                     echo "</td>";
                     echo "</tr>";
