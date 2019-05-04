@@ -107,7 +107,7 @@
                         echo '</td>';
                         echo "<td>";
                             echo '<form action="analyze.php" method="POST">';
-                                echo '<input type="hidden" name="url" id="url" value="'.$url.'">';
+                                echo '<input type="hidden" name="url" value="'.$url.'">';
                                 echo '<input type="submit" value="Analyze">';
                             echo "</form>";
                         echo "</td>";

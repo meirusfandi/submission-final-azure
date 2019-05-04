@@ -1,3 +1,11 @@
+<?php 
+    if (isset($_POST['analyze'])){
+        $url = isset($_POST['url']);
+    } else {
+        header("Location", "index.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,12 +13,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 </head>
 <body>
-
-<?php 
-    if (isset($_POST['analyze'])){
-        $url = isset($_POST['url']);
-    }
-?>
  
 <script type="text/javascript">
     function proccessImage() {
